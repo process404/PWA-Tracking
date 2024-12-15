@@ -34,9 +34,6 @@
       async getTrackCount(){
         return await getCount();
       },
-      async checkIfTracking(){
-        return await checkIfTracking();
-      }
     },
     mounted(){
       document.documentElement.classList.toggle(

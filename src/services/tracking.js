@@ -4,7 +4,8 @@ let trackingInterval = null;
 let lastPosition = null;
 
 export function checkIfTracking() {
-    return trackingInterval !== null;
+    const trackingInterval = localStorage.getItem('trackingInterval');
+    return trackingInterval;
 }
 
 export function startTracking() {
@@ -14,6 +15,12 @@ export function startTracking() {
 
     console.log('Tracking location...');
     getPosition(true, 2000); // First attempt with high accuracy and short timeout
+
+    trackingInterval = setInterval(() => {
+        getPosition(true, 2000);
+    }, 10000); // Set the interval to 10 seconds (or any desired interval)
+
+    localStorage.setItem('trackingInterval', trackingInterval);
 }
 
 function getPosition(enableHighAccuracy, timeout) {
@@ -57,6 +64,7 @@ export function stopTracking() {
     if (trackingInterval) {
         clearInterval(trackingInterval);
         trackingInterval = null;
+        localStorage.removeItem('trackingInterval');
     }
 }
 
@@ -66,7 +74,7 @@ function errorFn(error) {
     stopTracking();
 }
 
-export function getCount() {se
+export function getCount() {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open('locations', 1);
 

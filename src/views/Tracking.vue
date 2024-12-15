@@ -40,6 +40,7 @@
     </main>
 </template>
 <script>
+import { checkIfTracking, getCount } from '../services/tracking.js';
 export default {
     data(){
         return{
@@ -50,10 +51,10 @@ export default {
     methods:{
         async toggle(){
             await this.$root.toggleTracking();
-            this.tracking = this.$root.checkIfTracking();
+            this.tracking = await checkIfTracking();
         },
         async updateTrackCount() {
-            this.trackCount = await this.$root.getTrackCount();
+            this.trackCount = await getCount();
         }
     },
     mounted() {
@@ -61,7 +62,8 @@ export default {
         this.tracking = false;
         this.updateTrackCount();
         this.interval = setInterval(async () => {
-            this.tracking = await this.$root.checkIfTracking();
+            this.tracking = await checkIfTracking();
+            console.log(this.tracking);
             await this.updateTrackCount();
         }, 60000);
     },
