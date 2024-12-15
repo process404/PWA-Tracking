@@ -8,7 +8,8 @@
 <script>
   import Nav from './components/Nav.vue';
   import Footer from './components/Footer.vue';
-  import { startTracking, stopTracking, getCount, checkIfTracking } from './services/tracking.js';
+  import { startTracking, stopTracking, checkIfTracking } from './services/tracking.js';
+  import { getCount } from './services/db.js';
 
   export default {
     components: {
@@ -35,13 +36,13 @@
         return await getCount();
       },
     },
-    mounted(){
+    async mounted(){
       document.documentElement.classList.toggle(
       'dark',
         localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
       );
       this.darkMode = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      this.tracking = this.checkIfTracking();
+      this.tracking = await checkIfTracking();
 
     }
   }
