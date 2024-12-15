@@ -41,6 +41,9 @@ export function addLocation(position, isMoving) {
 }
 
 export function getAllLocations() {
+    if (!db) {
+        return Promise.reject(new Error('Database is not initialized. Please call openDB first.'));
+    }
     return new Promise((resolve, reject) => {
       const transaction = db.transaction([storeName], 'readonly');
       const store = transaction.objectStore(storeName);
