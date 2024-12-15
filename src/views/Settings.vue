@@ -26,7 +26,7 @@
                             <article class="flex items-center gap-6 pt-4 pb-4 pl-3 pr-3 md:flex-row flex-col">
                                 <div class="md:w-3/4 w-full">
                                     <h3 class="dark:text-neutral-300 mb-2">Control frequency and accuracy of tracking</h3>
-                                    <p class="dark:text-neutral-400 text-sm italic">Control frequency and accuracy of tracking requests to suit battery usage requirements.</p>
+                                    <p class="dark:text-neutral-400 text-sm italic">Control frequency and accuracy of tracking requests to suit battery usage or need for frequent location ping requirements.</p>
                                 </div>
                                 <div class="w-full flex items-center justify-center flex-col gap-2  border-[1px] p-2 border-neutral-700 rounded-sm">
                                     <div class="w-full">
