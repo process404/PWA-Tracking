@@ -6,6 +6,8 @@
 import { ref } from 'vue';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { openDB, getAllLocations } from '../services/db.js'
 
 const initialMap = ref(null);
@@ -20,7 +22,13 @@ export default {
         window.scrollTo(0, 0);
         await openDB();
         this.locations = await getAllLocations();
-        console.log(this.locations);
+        delete L.Icon.Default.prototype._getIconUrl;
+
+        L.Icon.Default.mergeOptions({
+            iconRetinaUrl: icon,
+            iconUrl: icon,
+            shadowUrl: iconShadow,
+        });
 
         initialMap.value = L.map('map').setView([55.3781, -3.4360], 6);
         

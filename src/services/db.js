@@ -30,7 +30,7 @@ export async function openDB() {
         return Promise.reject(new Error('Database is not initialized. Please call openDB first.'));
     }
 
-    console.log("INCOMING LOCATION", location);
+    // console.log("INCOMING LOCATION", location);
     return new Promise((resolve, reject) => {
         const transaction = db.transaction([storeName], 'readwrite');
         const store = transaction.objectStore(storeName);
@@ -84,6 +84,9 @@ export async function clearLocations(){
 }
 
 export async function getCount(){
+  if (!db) {
+    return Promise.reject(new Error('Database is not initialized. Please call openDB first.'));
+  }
   return new Promise((resolve, reject) => {
       const transaction = db.transaction([storeName], 'readonly');
       const store = transaction.objectStore(storeName);

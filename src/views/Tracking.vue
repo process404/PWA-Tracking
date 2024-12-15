@@ -14,7 +14,7 @@
                     <h3 v-else class="text-white w-full text-center italic m-0 font-semibold text-xl">Click the button to stop tracking</h3>
                     <h4 v-if="!tracking" class="w-full text-center text-white text-opacity-50 italic hidden sm:inline-block">Currently not enabled</h4>
                     <h4 v-else class="w-full text-center text-white mt-0 text-opacity-50 italic hidden sm:inline-block">Tracking enabled, location logs: {{trackCount}} </h4>
-                    <button class="w-full h-64 group border-[1px] border-white border-opacity-50 bg-black bg-opacity-20 rounded-md mt-4 flex items-center" @click="toggle()" :aria-label="tracking ? 'Stop tracking' : 'Start tracking'">  
+                    <button v-if="!loading" class="w-full h-64 group border-[1px] border-white border-opacity-50 bg-black bg-opacity-20 rounded-md mt-4 flex items-center" @click="toggle(); $event.target.blur()" :aria-label="tracking ? 'Stop tracking' : 'Start tracking'">  
                         <div class="w-full h-full relative flex items-center justify-center">
                             <svg v-if="!tracking" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-full h-full absolute stroke-white opacity-70 group-hover:opacity-5 duration-200">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -32,6 +32,9 @@
                             </svg>
                         </div>
                     </button>
+                    <div v-if="loading" class="w-full h-64 flex items-center justify-center bg-neutral-900 border-[1px] border-neutral-600 mt-3 rounded-md">
+                        <div class="loader"></div>
+                    </div>
                     <h4 v-if="!tracking" class="w-full text-center mt-3 text-white text-opacity-50 italic sm:hidden inline-block">Currently not enabled</h4>
                     <h4 v-else class="w-full text-center text-white mt-3 text-opacity-50 italic sm:hidden inline-block">Tracking enabled, location logs: {{trackCount}} </h4>
                 </div>
@@ -46,11 +49,16 @@ export default {
     data(){
         return{
             tracking: false,
-            trackCount: 0
+            trackCount: 0,
+            loading: false
         }
     },
     methods:{
         async toggle(){
+            this.loading = true;
+            this.toggleStuff();
+        },
+        async toggleStuff(){
             await this.$root.toggleTracking();
             this.tracking = await checkIfTracking();
         },
@@ -62,15 +70,19 @@ export default {
         window.scrollTo(0, 0);
         this.tracking = false;
         this.updateTrackCount();
-        this.interval = setInterval(() => {
-            this.tracking = checkIfTracking();
-            console.log(this.tracking);
+        this.interval = setInterval(async () => {
+            this.tracking = await checkIfTracking();
+            if(this.tracking){
+                this.loading = false;
+            }else{
+                this.loading = false;
+            }
             this.updateTrackCount();
-        }, 10000);
+        }, 2000);
     },
     beforeDestroy() {
         clearInterval(this.interval);
-    }
+    },
 }
 </script>
 <style>
@@ -111,5 +123,20 @@ export default {
 
     .pulse{
         animation: pulse 1s infinite;
+    }
+
+    @keyframes spin{
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+
+    .loader{
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        border-left-color: #fff;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        animation: spin 1s linear infinite;
     }
 </style>

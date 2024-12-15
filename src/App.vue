@@ -21,7 +21,7 @@
         ver: 'main',
         tracking: false,
         darkMode: true,
-        trackTimeout: 120000,
+        trackTimeout: 120,
         accuracy: true,
         stationeryMode: false,
         movementMode: false,
@@ -31,6 +31,7 @@
       toggleTracking(){
         this.tracking = !this.tracking;
         if(this.tracking){
+          // console.log("VARS ", this.trackTimeout, this.accuracy, this.movementMode);
           if (localStorage.getItem('trackingInterval')) {
             this.trackTimeout = localStorage.getItem('trackingInterval');
           }
@@ -61,10 +62,25 @@
       this.movementMode = localStorage.getItem('time_out_var');
       this.accuracy = localStorage.getItem('acc_var');
 
-      console.log(this.trackTimeout);
-      console.log(this.movementMode);
-      console.log(this.accuracy);
+      
+      if(this.trackTimeout == null){
+        localStorage.setItem('trackingInterval', 120);
+        this.trackTimeout = 120;
+      }
+      
+      if(this.movementMode == null){
+        localStorage.setItem('time_out_var', false);
+        this.movementMode = false;
+      }
 
+      if(this.accuracy == null){
+        localStorage.setItem('acc_var', true);
+        this.accuracy = true;
+      }
+      
+      // console.log(this.trackTimeout);
+      // console.log(this.movementMode);
+      // console.log(this.accuracy);
     }
   }
   

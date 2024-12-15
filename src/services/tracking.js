@@ -16,14 +16,14 @@ export async function startTracking(time_out, acc, movement_mode) {
         return;
     }
 
-    time_out_var = time_out;
+    time_out_var = time_out * 1000;
     acc_var = acc;
     movement_mode_var = movement_mode;
 
     await openDB();
     await requestNotificationPermission();
     
-    console.log('Tracking location...');
+    // console.log('Tracking location...');
     showNotification('Tracking Started', { body: 'Location tracking is now active.' });
     getPosition(true, time_out_var, movement_mode_var); 
 
@@ -57,16 +57,16 @@ function getPosition(enableHighAccuracy, timeout, movement_mode) {
                     longitude: position.coords.longitude
                 }
             });
-            console.log('Location saved:', position, 'Moving:', isMoving, 'Timestamp:', timestamp);
+            // console.log('Location saved:', position, 'Moving:', isMoving, 'Timestamp:', timestamp);
         } catch (error) {
             console.error('Error saving location:', error);
         }
 
         lastPosition = position;
 
-        console.log('Latitude:', position.coords.latitude);
-        console.log('Longitude:', position.coords.longitude);
-        console.log('Timestamp:', timestamp);
+        // console.log('Latitude:', position.coords.latitude);
+        // console.log('Longitude:', position.coords.longitude);
+        // console.log('Timestamp:', timestamp);
     }, (error) => {
         console.error('Error getting position:', error);
         if (enableHighAccuracy) {
