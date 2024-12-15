@@ -99,8 +99,11 @@ export default {
             if (confirm('Are you sure you want to clear all locations? This action cannot be undone.')) {
                 await clearLocations();
                 alert('Locations cleared successfully.');
+                this.understood = false;
+                window.location.reload();
             }else{
                 this.understood = false;
+                window.location.reload();
             }
         }
     }

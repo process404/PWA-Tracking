@@ -17,7 +17,7 @@ export function startTracking() {
 
     trackingInterval = setInterval(() => {
         getPosition(true, 60000);
-    }, 10000); 
+    }, 60000); 
 
     localStorage.setItem('trackingInterval', trackingInterval);
 }

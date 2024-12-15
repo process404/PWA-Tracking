@@ -4,7 +4,7 @@
             <div class="flex max-w-[1100px] lg:max-w-[90ch] lg:h-[800px] h-auto items-center justify-center pb-8 gap-4 lg:p-8 w-full z-10">
                 <div class=" rounded-md p-4 lg:p-8 flex flex-col items-center justify-center gap-4 lg:h-[700px]">
                     <div class="pb-8 md:pb-16 md:pt-12 lg:pt-4 lg:pb-0">
-                        <h4 class="text-center italic text-white opacity-70">About this App</h4>
+                        <h4 class="text-center italic text-white opacity-70 mb-3">About this App</h4>
                         <h1 class="text-white text-5xl break-none md:text-7xl font-semibold text-center" style="z-index: 2;">Travel-Track</h1>
                         <hr class="border-white border-opacity-50 mt-12 mb-12 lg:mb-0">
                         <img src="/images/resized.webp" class="rounded-md inline-block lg:hidden object-cover" alt="preview_img" width="600" height="400"/>
