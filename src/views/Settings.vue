@@ -67,10 +67,8 @@ export default {
     data(){
         return{
             darkMode: false,
-            dbStn: false,
             advancedDropdown: false,
             understood: false,
-
         }
     },
     methods:{

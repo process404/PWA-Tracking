@@ -4,8 +4,7 @@ let trackingInterval = null;
 let lastPosition = null;
 
 export function checkIfTracking() {
-    const trackingInterval = localStorage.getItem('trackingInterval');
-    return trackingInterval;
+    return trackingInterval !== null;
 }
 
 export function startTracking() {
@@ -24,7 +23,7 @@ export function startTracking() {
 }
 
 function getPosition(enableHighAccuracy, timeout) {
-    navigator.geolocation.watchPosition(async (position) => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
         const isMoving = lastPosition
             ? position.coords.latitude !== lastPosition.coords.latitude ||
               position.coords.longitude !== lastPosition.coords.longitude
@@ -55,7 +54,7 @@ function getPosition(enableHighAccuracy, timeout) {
         }
     }, {
         enableHighAccuracy: enableHighAccuracy,
-        maximumAge: 60000,
+        maximumAge: 0,
         timeout: timeout
     });
 }
@@ -64,7 +63,6 @@ export function stopTracking() {
     if (trackingInterval) {
         clearInterval(trackingInterval);
         trackingInterval = null;
-        localStorage.removeItem('trackingInterval');
     }
 }
 
@@ -72,29 +70,4 @@ function errorFn(error) {
     console.error('Error getting location:', error);
     alert('Error getting location, (Error: ' + error.message + ".) Location tracking will be stopped.");
     stopTracking();
-}
-
-export function getCount() {
-    return new Promise((resolve, reject) => {
-        const request = indexedDB.open('locations', 1);
-
-        request.onsuccess = (event) => {
-            const db = event.target.result;
-            const transaction = db.transaction('locations', 'readonly');
-            const store = transaction.objectStore('locations');
-            const countRequest = store.count();
-
-            countRequest.onsuccess = () => {
-                resolve(countRequest.result);
-            };
-
-            countRequest.onerror = () => {
-                reject(countRequest.error);
-            };
-        };
-
-        request.onerror = () => {
-            reject(request.error);
-        };
-    });
 }
