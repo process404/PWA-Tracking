@@ -28,7 +28,7 @@ export function addLocation(position, isMoving) {
     return new Promise((resolve, reject) => {
       const transaction = db.transaction([storeName], 'readwrite');
       const store = transaction.objectStore(storeName);
-      const request = store.add({ position, isMoving, timestamp: new Date() });
+      const request = store.add({ ...position, isMoving, timestamp: position.timestamp || new Date() });
   
       request.onsuccess = () => {
         resolve();

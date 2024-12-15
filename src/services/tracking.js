@@ -2,6 +2,10 @@ import { openDB , addLocation } from './db.js'
 
 let trackingInterval = null;
 
+export function checkIfTracking(){
+    return trackingInterval !== null;
+}
+
 export function startTracking() {
     trackingInterval = setInterval(() => {
         console.log('Tracking location...');
@@ -11,20 +15,29 @@ export function startTracking() {
               position.coords.longitude !== lastPosition.coords.longitude
             : false;
 
-            addLocation(position, isMoving).then(() => {
-                console.log('Location saved:', position, 'Moving:', isMoving);
+            const timestamp = new Date().toISOString();
+
+            addLocation({ ...position, timestamp }, isMoving).then(() => {
+                console.log('Location saved:', position, 'Moving:', isMoving, 'Timestamp:', timestamp);
             }).catch((error) => {
-                console.error('Error saving location:', error);
+                errorFn(error)
             });
 
             lastPosition = position;
             
             console.log('Latitude:', position.coords.latitude);
             console.log('Longitude:', position.coords.longitude);
+            console.log('Timestamp:', timestamp);
         }, (error) => {
-            console.error('Error getting location:', error);
+            errorFn(error)
         });
     }, 5000);
+}
+
+function errorFn(error){
+    console.error('Error getting location:', error);
+    alert('Error getting location, (Error: ' + error.message + ".) Location tracking will be stopped.");
+    stopTracking();
 }
 
 export function stopTracking() {
@@ -32,4 +45,22 @@ export function stopTracking() {
         clearInterval(trackingInterval);
         trackingInterval = null;
     }
+}
+
+export function getCount(){
+    return new Promise((resolve, reject) => {
+        openDB().then((db) => {
+            const transaction = db.transaction(['coords'], 'readonly');
+            const store = transaction.objectStore('coords');
+            const request = store.count();
+            request.onsuccess = () => {
+                resolve(request.result);
+            };
+            request.onerror = (event) => {
+                reject(event.target.error);
+            };
+        }).catch((error) => {
+            reject(error);
+        });
+    });
 }

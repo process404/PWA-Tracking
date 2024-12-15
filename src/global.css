@@ -1,0 +1,945 @@
+.non-empty {
+    @apply border-b-blue-600 valid:border-blue-600 invalid:border-red-600 hover:invalid:border-red-600
+}
+
+.button {
+    @apply relative z-20
+}
+
+.button::before {
+    border-radius: 5%;
+}
+
+.button {
+    @apply dark:text-neutral-200 before:opacity-0 before:w-1/2 before:h-full before:bg-neutral-500 before:bg-opacity-10 before:absolute before:left-1/2 before:top-1/2 before:transform before:-translate-x-1/2 before:-translate-y-1/2 before:z-[-1] text-white bg-neutral-700 rounded-sm overflow-hidden p-1 pl-2 pr-2 duration-100 after:w-1/2 after:bg-opacity-0 after:h-full after:absolute after:left-1/4 after:top-0 after:duration-300
+}
+
+.button.s-padding {
+    @apply p-1 pl-2 pr-2
+}
+
+.button.x-padding {
+    @apply p-2 pl-4 pr-4
+}
+
+.button.xl-padding {
+    @apply p-2 pl-8 pr-8
+}
+
+.button.active {
+    @apply after:w-full after:left-0 after:bg-neutral-300 after:z-[-1]
+}
+
+.button.dark {
+    @apply bg-neutral-800
+}
+
+.button:hover:before {
+    animation: boxFillIn 0.1s forwards;
+    animation-timing-function: ease-in-out;
+}
+
+.button:active:before {
+    animation: boxFill 0.1s forwards;
+    animation-timing-function: ease-in-out;
+}
+
+.button.red {
+    @apply bg-red-800 before:bg-red-300 before:bg-opacity-10 text-white after:bg-red-700 after:bg-opacity-0
+}
+
+.button.red.active {
+    @apply after:bg-red-700 after:bg-opacity-20
+}
+
+.button.orange {
+    @apply bg-orange-700 before:bg-orange-300 before:bg-opacity-10 text-white
+}
+
+.button.orange.active {
+    @apply after:bg-orange-700 after:bg-opacity-20
+}
+
+.button.yellow {
+    @apply bg-yellow-500 before:bg-yellow-800 before:bg-opacity-10 text-neutral-700
+}
+
+.button.yellow.active {
+    @apply after:bg-yellow-600 after:bg-opacity-20
+}
+
+.button.green {
+    @apply bg-green-800 before:bg-green-300 before:bg-opacity-10 text-white
+}
+
+.button.green.active {
+    @apply after:bg-green-800 after:bg-opacity-20
+}
+
+.button.blue {
+    @apply bg-blue-700 before:bg-blue-300 before:bg-opacity-10 invalid:border-b-red-700 hover:invalid:border-red-700 text-white
+}
+
+.button.blue.active {
+    @apply after:bg-blue-700 after:bg-opacity-20
+}
+
+.button.blue2 {
+    @apply bg-blue-800 before:bg-blue-300 before:bg-opacity-10 text-white
+}
+
+.button.blue2.active {
+    @apply after:bg-blue-800 after:bg-opacity-20
+}
+
+.button.blue3 {
+    @apply bg-blue-900 before:bg-blue-300 before:bg-opacity-10 text-white;
+}
+
+.button.blue3.active {
+    @apply after:bg-blue-900 after:bg-opacity-20
+}
+
+.button.purple {
+    @apply bg-purple-800 before:bg-purple-300 before:bg-opacity-10 text-white
+}
+
+.button.purple.active {
+    @apply after:bg-purple-800 after:bg-opacity-20
+}
+
+.button.pink {
+    @apply bg-pink-800 before:bg-pink-300 before:bg-opacity-10 text-white
+}
+
+.button.pink.active {
+    @apply after:bg-pink-800 after:bg-opacity-20
+}
+
+.button.teal {
+    @apply bg-teal-700 before:bg-teal-300 before:bg-opacity-10 text-white
+}
+
+.button.teal.active {
+    @apply after:bg-teal-700 after:bg-opacity-20
+}
+
+.button.outlined {
+    @apply bg-transparent border-[1px] border-neutral-800
+}
+
+.button.red.outlined {
+    @apply text-red-700 before:bg-red-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-red-500
+}
+
+.button.orange.outlined {
+    @apply text-orange-700 before:bg-orange-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-orange-500
+}
+
+.button.yellow.outlined {
+    @apply text-yellow-700 before:bg-yellow-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-yellow-500
+}
+
+.button.green.outlined {
+    @apply text-green-700 before:bg-green-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-green-500
+}
+
+.button.blue.outlined {
+    @apply text-blue-700 before:bg-blue-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-blue-500
+}
+
+.button.blue2.outlined {
+    @apply text-blue-800 before:bg-blue-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-blue-500
+}
+
+.button.blue3.outlined {
+    @apply text-blue-900 before:bg-blue-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-blue-500
+}
+
+.button.purple.outlined {
+    @apply text-purple-700 before:bg-purple-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-purple-500
+}
+
+.button.pink.outlined {
+    @apply text-pink-700 before:bg-pink-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-pink-500
+}
+
+.button.teal.outlined {
+    @apply text-teal-700 before:bg-teal-300 before:bg-opacity-10 bg-transparent border-[1px] border-neutral-800 dark:text-teal-500
+}
+
+.button.red.tonal {
+    @apply bg-red-600 before:bg-red-600 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-red-400
+}
+
+.button.orange.tonal {
+    @apply bg-orange-600 before:bg-orange-600 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-orange-400
+}
+
+.button.yellow.tonal {
+    @apply bg-yellow-600 before:bg-yellow-600 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-yellow-400
+}
+
+.button.green.tonal {
+    @apply bg-green-800 before:bg-green-800 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-green-400
+}
+
+.button.blue.tonal {
+    @apply bg-blue-700 before:bg-blue-700 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-blue-400
+}
+
+.button.blue2.tonal {
+    @apply bg-blue-800 before:bg-blue-800 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-blue-400
+}
+
+.button.blue3.tonal {
+    @apply bg-blue-900 before:bg-blue-900 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-blue-400
+}
+
+.button.purple.tonal {
+    @apply bg-purple-800 before:bg-purple-800 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-purple-400
+}
+
+.button.pink.tonal {
+    @apply bg-pink-800 before:bg-pink-800 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-pink-400
+}
+
+.button.teal.tonal {
+    @apply bg-teal-800 before:bg-teal-800 before:bg-opacity-10 text-neutral-700 bg-opacity-20 dark:text-teal-400
+}
+
+.button.tonal.light {
+    @apply bg-opacity-10
+}
+
+.button.elevated {
+    @apply shadow-md border-[1px] border-neutral-200 text-neutral-800 dark:text-neutral-200 bg-opacity-50 bg-neutral-200 dark:bg-neutral-800 dark:border-neutral-900 rounded-sm
+}
+
+.button.elevated.red {
+    @apply text-red-800 dark:text-red-400
+}
+
+.button.elevated.orange {
+    @apply text-orange-800 dark:text-orange-400
+}
+
+.button.elevated.yellow {
+    @apply text-yellow-800 dark:text-yellow-400
+}
+
+.button.elevated.green {
+    @apply text-green-800 dark:text-green-400
+}
+
+.button.elevated.blue {
+    @apply text-blue-800 dark:text-blue-400
+}
+
+.button.elevated.purple {
+    @apply text-purple-800 dark:text-purple-400
+}
+
+.button.elevated.pink {
+    @apply text-pink-800 dark:text-pink-400
+}
+
+.button.elevated.teal {
+    @apply text-teal-800 dark:text-teal-400
+}
+
+
+.button.text {
+    @apply bg-transparent text-neutral-900 dark:text-neutral-200
+}
+
+.button.text.red {
+    @apply text-red-800 dark:text-red-400
+}
+
+.button.text.orange {
+    @apply text-orange-800 dark:text-orange-400
+}
+
+.button.text.yellow {
+    @apply text-yellow-800 dark:text-yellow-400
+}
+
+.button.text.green {
+    @apply text-green-800 dark:text-green-400
+}
+
+.button.text.blue {
+    @apply text-blue-800 dark:text-blue-400
+}
+
+.button.text.blue2 {
+    @apply text-blue-800 dark:text-blue-400
+}
+
+.button.text.purple {
+    @apply text-purple-800 dark:text-purple-400
+}
+
+.button.text.pink {
+    @apply text-pink-800 dark:text-pink-400
+}
+
+.button.text.teal {
+    @apply text-teal-800 dark:text-teal-400
+}
+
+.button:has(svg) {
+    @apply flex items-center justify-center gap-2
+}
+
+.button:has(svg) svg {
+    @apply w-4 h-4
+}
+
+.xl-round {
+    @apply rounded-xl
+}
+
+.button-group {
+    @apply flex rounded-none
+}
+
+.button-group button {
+    @apply first:rounded-l-2xl last:rounded-r-2xl first:border-r-transparent rounded-none last:border-l-transparent
+}
+
+.button.wider {
+    @apply pl-4 pr-4
+}
+
+.button.wider2 {
+    @apply pl-6 pr-6
+}
+
+.button.wider3 {
+    @apply pl-8 pr-8
+}
+
+.button.taller {
+    @apply pt-2 pb-2
+}
+
+.button.taller2 {
+    @apply pt-4 pb-4
+}
+
+.button.lessprominent {
+    @apply before:bg-opacity-5
+}
+
+.button.pureSVG svg {
+    @apply w-6 h-6
+}
+
+.button.hover-red {
+    @apply hover:bg-red-700 hover:text-white
+}
+
+
+.button.darkbefore{
+    @apply before:bg-black before:bg-opacity-10
+}
+
+.button.noanim{
+    @apply before:w-full rounded-none duration-100;
+}
+
+.button.noanim:hover:before{
+    animation: none;
+    @apply w-full opacity-100 rounded-none
+}
+
+
+@keyframes boxFillIn {
+    0% {
+        width: 50%;
+        opacity: 0;
+        border-radius: 20%
+    }
+
+    100% {
+        width: 100%;
+        opacity: 100;
+        border-radius: 0.125rem;
+    }
+}
+
+@keyframes boxFillOut {
+    0% {
+        width: 100%;
+        opacity: 100;
+        border-radius: 0.125rem;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 0;
+        border-radius: 20%
+    }
+}
+
+@keyframes boxFillOut2 {
+    0% {
+        width: 100%;
+        left: -50%;
+        border-radius: 0.125rem;
+    }
+
+    100% {
+        width: 100%;
+        left: 0%;
+        border-radius: 25%;
+    }
+}
+
+.xs {
+    @apply text-xs
+}
+
+.sm {
+    @apply text-sm
+}
+
+.input {
+    @apply bg-opacity-30 text-sm rounded-sm p-2 dark:bg-neutral-700 dark:bg-opacity-30 bg-neutral-300 border-[1px] border-b-[2px] dark:border-neutral-700 border-neutral-700 focus:border-neutral-400 dark:text-white text-neutral-800 placeholder:text-neutral-600 outline-none focus:border-neutral-800 duration-100 invalid:border-b-red-600 hover:invalid:border-b-red-600
+}
+
+.input.red {
+    @apply focus:border-b-red-700
+}
+
+.input.orange {
+    @apply focus:border-b-orange-600
+}
+
+.input.yellow {
+    @apply focus:border-b-yellow-600
+}
+
+.input.green {
+    @apply focus:border-b-green-600
+}
+
+.input.blue {
+    @apply focus:border-b-blue-600
+}
+
+.input.purple {
+    @apply focus:border-b-purple-600
+}
+
+.input.pink {
+    @apply focus:border-b-pink-600
+}
+
+.input.teal {
+    @apply focus:border-b-teal-600
+}
+
+.input.reduced {
+    @apply p-1
+}
+
+.input.darker {
+    @apply bg-neutral-900 text-white
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent pt-8
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-black bg-opacity-20 h-1/4
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.iconEdit::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.checkbox {
+    @apply appearance-none bg-transparent border-[2px] dark:border-neutral-700 border-neutral-500 w-5 h-5 rounded-sm relative duration-100 hover:cursor-pointer before:bg-neutral-700 before:bg-opacity-0 before:duration-100 checked:bg-neutral-600 checked:before:hover:bg-opacity-10
+}
+
+.checkbox:not(:checked):not(:focus)::before {
+    @apply hover:bg-opacity-20
+}
+
+.checkbox.red {
+    @apply checked:bg-red-700 before:bg-red-700 before:bg-opacity-0
+}
+
+.checkbox.orange {
+    @apply checked:bg-orange-700 before:bg-orange-700 before:bg-opacity-0
+}
+
+.checkbox.yellow {
+    @apply checked:bg-yellow-600 before:bg-yellow-600 before:bg-opacity-0
+}
+
+.checkbox.green {
+    @apply checked:bg-green-800 before:bg-green-800 before:bg-opacity-0
+}
+
+.checkbox.blue {
+    @apply checked:bg-blue-700 before:bg-blue-700 before:bg-opacity-0
+}
+
+.checkbox.purple {
+    @apply checked:bg-purple-800 before:bg-purple-800 before:bg-opacity-0
+}
+
+.checkbox.pink {
+    @apply checked:bg-pink-800 before:bg-pink-800 before:bg-opacity-0
+}
+
+.checkbox.teal {
+    @apply checked:bg-teal-700 before:bg-teal-700 before:bg-opacity-0
+}
+
+.checkbox::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.checkbox:checked::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: url('https://upload.wikimedia.org/wikipedia/commons/0/07/Open_Iconic_check.svg');
+    filter: invert(100);
+    transform: translateY(-3px) translateX(0px) scale(1.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox.line:checked::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '-';
+    filter: invert(100);
+    font-weight: 800;
+    transform: translateY(-2px) translateX(0px) scaleY(1.2) scaleX(2.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input.inputDisabled {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.input.inputDisabled:hover {
+    cursor: not-allowed;
+}
+
+.card.elevated {
+    @apply shadow-md border-[1px] border-neutral-200 text-neutral-800 bg-opacity-50 bg-neutral-200 dark:bg-neutral-800 dark:border-neutral-900 rounded-md p-2
+}
+
+.card.elevated.red {
+    @apply bg-red-100 bg-opacity-20 dark:bg-opacity-70
+}
+
+.card.elevated.orange {
+    @apply bg-orange-100 bg-opacity-20 dark:bg-opacity-70
+}
+
+.card.elevated.yellow {
+    @apply bg-yellow-100 bg-opacity-20 dark:bg-opacity-70
+}
+
+.card.elevated.green {
+    @apply bg-green-100 bg-opacity-20 dark:bg-opacity-70
+}
+
+.card.elevated.blue {
+    @apply bg-blue-100 bg-opacity-20 dark:bg-opacity-70
+}
+
+.card.elevated.purple {
+    @apply bg-purple-100 bg-opacity-20 dark:bg-opacity-70
+}
+
+.card.elevated.pink {
+    @apply bg-pink-100 bg-opacity-20 dark:bg-opacity-70
+}
+
+.card.elevated.teal {
+    @apply bg-teal-100 bg-opacity-20 dark:bg-opacity-70
+}
+
+.card.filled {
+    @apply bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded-md
+}
+
+.card.filled.red {
+    @apply bg-red-200 dark:bg-red-400 text-neutral-800 dark:bg-opacity-30 dark:text-white p-2
+}
+
+.card.filled.orange {
+    @apply bg-orange-200 dark:bg-orange-400 text-neutral-800 dark:bg-opacity-30 dark:text-white p-2
+}
+
+.card.filled.yellow {
+    @apply bg-yellow-200 dark:bg-yellow-400 text-neutral-800 dark:bg-opacity-30 dark:text-white p-2
+}
+
+.card.filled.green {
+    @apply bg-green-200 dark:bg-green-400 text-neutral-800 dark:bg-opacity-30 dark:text-white p-2
+}
+
+.card.filled.blue {
+    @apply bg-blue-200 dark:bg-blue-400 text-neutral-800 dark:bg-opacity-30 dark:text-white p-2
+}
+
+.card.filled.purple {
+    @apply bg-purple-200 dark:bg-purple-400 text-neutral-800 dark:bg-opacity-30 dark:text-white p-2
+}
+
+.card.filled.pink {
+    @apply bg-pink-200 dark:bg-pink-400 text-neutral-800 dark:bg-opacity-30 dark:text-white p-2
+}
+
+.card.filled.teal {
+    @apply bg-teal-200 dark:bg-teal-400 text-neutral-800 dark:bg-opacity-30 dark:text-white p-2
+}
+
+.card.outlined {
+    @apply bg-transparent border-[1px] border-neutral-800 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 rounded-md p-2
+}
+
+.card.outlined.red {
+    @apply border-red-200 text-white border-opacity-20 bg-neutral-800
+}
+
+.card.outlined.orange {
+    @apply border-orange-200 text-white border-opacity-20 bg-neutral-800
+}
+
+.card.outlined.yellow {
+    @apply border-yellow-200 text-white border-opacity-20 bg-neutral-800
+}
+
+.card.outlined.green {
+    @apply border-green-200 text-white border-opacity-20 bg-neutral-800
+}
+
+.card.outlined.blue {
+    @apply border-blue-200 text-white border-opacity-20 bg-neutral-800
+}
+
+.card.outlined.purple {
+    @apply border-purple-200 text-white border-opacity-20 bg-neutral-800
+}
+
+.card.outlined.pink {
+    @apply border-pink-200 text-white border-opacity-20 bg-neutral-800
+}
+
+.card.outlined.teal {
+    @apply border-teal-200 text-white border-opacity-20 bg-neutral-800
+}
+
+.chip {
+    @apply dark:bg-transparent text-neutral-800 dark:text-neutral-200 rounded-md p-1 pl-2 pr-2 border-[1px] border-neutral-300 dark:border-neutral-700 before:absolute before:w-1/2 before:h-full before:bg-neutral-300 before:z-[-1px] before:bg-opacity-0 before:rounded-md relative before:top-0 before:left-1/4
+}
+
+.chip:hover::before {
+    animation: boxFillIn 0.1s forwards;
+    animation-timing-function: ease-in-out;
+    @apply bg-opacity-20 left-0
+}
+
+.chip.suggestion.red {
+    @apply text-neutral-800 dark:text-white dark:bg-opacity-5 before:bg-red-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.suggestion.orange {
+    @apply text-neutral-800 dark:text-white dark:bg-opacity-5 before:bg-orange-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.suggestion.yellow {
+    @apply text-neutral-800 dark:text-white dark:bg-opacity-5 before:bg-yellow-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.suggestion.green {
+    @apply text-neutral-800 dark:text-white dark:bg-opacity-5 before:bg-green-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.suggestion.blue {
+    @apply text-neutral-800 dark:text-white dark:bg-opacity-5 before:bg-blue-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.suggestion.purple {
+    @apply text-neutral-800 dark:text-white dark:bg-opacity-5 before:bg-purple-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.suggestion.pink {
+    @apply text-neutral-800 dark:text-white dark:bg-opacity-5 before:bg-pink-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.suggestion.teal {
+    @apply text-neutral-800 dark:text-white dark:bg-opacity-5 before:bg-teal-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.filter {
+    @apply text-neutral-800 dark:text-white before:bg-neutral-300 before:bg-opacity-0 before:hover:bg-opacity-10 border-0 bg-neutral-200 dark:bg-neutral-200 dark:bg-opacity-10
+}
+
+.chip.filter::after {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/0/07/Open_Iconic_check.svg');
+    @apply absolute left-[11px] scale-150 translate-y-[-3px] invert-[40%] dark:invert-[100%]
+}
+
+.chip.filter.red {
+    @apply bg-red-700 bg-opacity-20 text-neutral-800 dark:text-neutral-200 before:bg-red-300 before:bg-opacity-0 before:hover:bg-opacity-10 pl-7
+}
+
+.chip.filter.orange {
+    @apply bg-orange-700 bg-opacity-20 text-neutral-800 dark:text-neutral-200 before:bg-orange-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.filter.yellow {
+    @apply bg-yellow-700 bg-opacity-20 text-neutral-800 dark:text-neutral-200 before:bg-yellow-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.filter.green {
+    @apply bg-green-800 bg-opacity-20 text-neutral-800 dark:text-neutral-200 before:bg-green-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.filter.blue {
+    @apply bg-blue-700 bg-opacity-20 text-neutral-800 dark:text-neutral-200 before:bg-blue-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.filter.purple {
+    @apply bg-purple-800 bg-opacity-20 text-neutral-800 dark:text-neutral-200 before:bg-purple-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.filter.pink {
+    @apply bg-pink-800 bg-opacity-20 text-neutral-800 dark:text-neutral-200 before:bg-pink-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.filter.teal {
+    @apply bg-teal-700 bg-opacity-20 text-neutral-800 dark:text-neutral-200 before:bg-teal-300 before:bg-opacity-0 before:hover:bg-opacity-10
+}
+
+.chip.inp {
+    @apply pr-7
+}
+
+.chip.inp::after {
+    content: url("https://upload.wikimedia.org/wikipedia/commons/5/5f/Red_X.svg");
+    @apply absolute w-2 h-2 top-[7.2px] right-[15px] scale-[12%] invert-[45%] saturate-0 dark:invert-[100%]
+}
+
+.chip.inp.red {
+    @apply bg-red-700 bg-opacity-5 before:bg-red-700 before:bg-opacity-0 hover:before:bg-opacity-5
+}
+
+.chip.inp.orange {
+    @apply bg-orange-700 bg-opacity-5 before:bg-orange-700 before:bg-opacity-0 hover:before:bg-opacity-5
+}
+
+.chip.inp.yellow {
+    @apply bg-yellow-700 bg-opacity-5 before:bg-yellow-700 before:bg-opacity-0 hover:before:bg-opacity-5
+}
+
+.chip.inp.green {
+    @apply bg-green-800 bg-opacity-5 before:bg-green-800 before:bg-opacity-0 hover:before:bg-opacity-5
+}
+
+.chip.inp.blue {
+    @apply bg-blue-700 bg-opacity-5 before:bg-blue-700 before:bg-opacity-0 hover:before:bg-opacity-5
+}
+
+.chip.inp.purple {
+    @apply bg-purple-800 bg-opacity-5 before:bg-purple-800 before:bg-opacity-0 hover:before:bg-opacity-5
+}
+
+.chip.inp.pink {
+    @apply bg-pink-800 bg-opacity-5 before:bg-pink-800 before:bg-opacity-0 hover:before:bg-opacity-5
+}
+
+.chip.inp.teal {
+    @apply bg-teal-700 bg-opacity-5 before:bg-teal-700 before:bg-opacity-0 hover:before:bg-opacity-5
+}
+
+.chip.assist {
+    @apply flex items-center gap-2
+}
+
+.chip.assist.red svg {
+    @apply fill-red-900
+}
+
+.chip.assist.orange svg {
+    @apply fill-orange-900
+}
+
+.chip.assist.yellow svg {
+    @apply fill-yellow-900
+}
+
+.chip.assist.green svg {
+    @apply fill-green-900
+}
+
+.chip.assist.blue svg {
+    @apply fill-blue-900
+}
+
+.chip.assist.purple svg {
+    @apply fill-purple-900
+}
+
+.chip.assist.pink svg {
+    @apply fill-pink-900
+}
+
+.chip.assist.teal svg{
+    @apply fill-teal-900
+}
+
+.switch {
+    @apply appearance-none dark:bg-neutral-800 w-16 h-8 rounded-2xl border-[2px] dark:border-black dark:border-opacity-50 hover:cursor-pointer relative before:w-5 before:h-5 before:absolute before:top-1 before:translate-x-1 before:duration-300 before:dark:bg-white before:rounded-full duration-200 border-neutral-600 before:bg-neutral-600 bg-neutral-300
+}
+
+.switch:checked {
+    @apply dark:bg-white before:dark:bg-neutral-800 before:translate-x-[180%] bg-neutral-700 before:bg-neutral-100 before:border-neutral-100 before:border-opacity-100
+}
+
+.switch.red:checked {
+    @apply bg-red-700 before:bg-white
+}
+
+.switch.orange:checked {
+    @apply bg-orange-700 before:bg-white
+}
+
+.switch.yellow:checked {
+    @apply bg-yellow-700 before:bg-white
+}
+
+.switch.green:checked {
+    @apply bg-green-800 before:bg-white
+}
+
+.switch.blue:checked {
+    @apply bg-blue-700 before:bg-white
+}
+
+.switch.blue2:checked {
+    @apply bg-blue-900 before:bg-white
+}
+
+.switch.blue3:checked {
+    @apply bg-blue-900 before:bg-white
+}
+
+.switch.purple:checked {
+    @apply bg-purple-800 before:bg-white
+}
+
+.switch.pink:checked {
+    @apply bg-pink-800 before:bg-white
+}
+
+.switch.teal:checked{
+    @apply bg-teal-700 before:bg-white
+}
+
+.line {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-neutral-500 relative before:h-[1px] hover:bg-neutral-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-neutral-200 inline-block
+}
+
+.line.no-move {
+    @apply p-1 hover:p-1
+}
+
+.line.teal {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-teal-500 relative before:h-[1px] hover:bg-teal-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-teal-200
+}
+
+.line.teal.no-move {
+    @apply p-1 hover:p-1
+}
+
+.line.red {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-red-500 relative before:h-[1px] hover:bg-red-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-red-200
+}
+
+.line.red.no-move {
+    @apply p-1 hover:p-1
+}
+
+.line.orange {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-orange-500 relative before:h-[1px] hover:bg-orange-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-orange-200
+}
+
+.line.orange.no-move {
+    @apply p-1 hover:p-1
+}
+
+.line.yellow {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-yellow-500 relative before:h-[1px] hover:bg-yellow-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-yellow-200
+}
+
+.line.yellow.no-move {
+    @apply p-1 hover:p-1
+}
+
+.line.green {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-green-500 relative before:h-[1px] hover:bg-green-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-green-200
+}
+
+.line.green.no-move {
+    @apply p-1 hover:p-1
+}
+
+.line.blue {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-blue-500 relative before:h-[1px] hover:bg-blue-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-blue-200
+}
+
+.line.blue.no-move {
+    @apply p-1 hover:p-1
+}
+
+.line.purple {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-purple-500 relative before:h-[1px] hover:bg-purple-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-purple-200
+}
+
+.line.purple.no-move {
+    @apply p-1 hover:p-1
+}
+
+.line.pink {
+    @apply before:absolute before:bottom-0 before:left-0 before:w-full before:bg-pink-500 relative before:h-[1px] hover:bg-pink-500 hover:bg-opacity-20 p-0 hover:p-1 duration-100 hover:text-pink-200
+}
+
+.line.pink.no-move {
+    @apply p-1 hover:p-1
+}

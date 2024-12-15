@@ -1,14 +1,14 @@
 
 <template>
   <Nav :ver="ver"/>
-  <router-view class="h-full"></router-view>
+  <router-view class="h-auto min-h-full lg:h-full lg:min-h-0"></router-view>
   <Footer></Footer>
 </template>
 
 <script>
   import Nav from './components/Nav.vue';
   import Footer from './components/Footer.vue';
-  import { startTracking, stopTracking } from './services/tracking.js';
+  import { startTracking, stopTracking, getCount, checkIfTracking } from './services/tracking.js';
 
   export default {
     components: {
@@ -29,7 +29,16 @@
         }else{
           stopTracking();
         }
+      },
+      getTrackCount(){
+        return getCount();
+      },
+      checkIfTracking(){
+        return checkIfTracking();
       }
+    },
+    mounted(){
+      this.tracking = this.checkIfTracking();
     }
   }
   
