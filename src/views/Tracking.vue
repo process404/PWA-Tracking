@@ -66,7 +66,7 @@ export default {
             this.tracking = checkIfTracking();
             console.log(this.tracking);
             this.updateTrackCount();
-        }, 60000);
+        }, 10000);
     },
     beforeDestroy() {
         clearInterval(this.interval);
