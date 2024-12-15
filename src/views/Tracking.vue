@@ -63,7 +63,7 @@ export default {
         this.interval = setInterval(async () => {
             this.tracking = await this.$root.checkIfTracking();
             await this.updateTrackCount();
-        }, 10000);
+        }, 60000);
     },
     beforeDestroy() {
         clearInterval(this.interval);
