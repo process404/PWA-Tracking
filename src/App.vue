@@ -20,7 +20,7 @@
       return {
         ver: 'main',
         tracking: false,
-        darkMode: false,
+        darkMode: true,
         trackTimeout: 120000,
         accuracy: true,
         stationeryMode: false,

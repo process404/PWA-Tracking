@@ -110,6 +110,8 @@ export default {
             'dark',
                 localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
             );
+            this.$root.darkMode = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            this.darkMode = this.$root.darkMode;
         },
         toggleDarkMode(){
             if(this.darkMode){
@@ -140,19 +142,24 @@ export default {
             return (this.trackingFrequency / 60).toFixed(2);
         },
         updateTrackingFrequency(){
+            this.$root.trackTimeout = this.trackingFrequency;
             localStorage.setItem('trackingInterval', this.trackingFrequency);
         },
         updateTrackingAccuracy(){
+            this.$root.accuracy = this.trackingAccuracy;
             localStorage.setItem('acc_var', this.trackingAccuracy);
         },
         updateTrackingMoving(){
+            this.$root.movementMode = this.trackingMoving;
             localStorage.setItem('time_out_var', this.trackingMoving);
         }
     },
     mounted(){
         this.trackingFrequency = this.$root.trackTimeout ?? localStorage.getItem('trackingInterval') ?? 120;
         this.trackingAccuracy = this.$root.accuracy ?? (localStorage.getItem('acc_var') === 'true');
-        this.trackingMoving = this.$root.movementMode ?? (localStorage.getItem('time_out_var') === 'true');
+        this.trackingMoving = this.$root.movementMode ?? (localStorage.getItem('time_out_var') === 'false');
+
+        this.toggleDMCode();
     }
 }
 </script>
