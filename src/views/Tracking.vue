@@ -19,14 +19,14 @@
                             <svg v-if="!tracking" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-full h-full absolute stroke-white opacity-70 group-hover:opacity-5 duration-200">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                             </svg>
-                            <svg v-if="tracking" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-full h-full absolute stroke-white opacity-0 group-hover:opacity-100 duration-200">
+                            <svg v-if="tracking" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-full h-full absolute stroke-white opacity-0 md:group-hover:opacity-100 duration-200">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                             </svg>
                             <svg v-if="!tracking" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-1/2 h-1/2 absolute stroke-white opacity-20 group-hover:opacity-100 duration-200">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                             </svg>
-                            <svg v-if="tracking" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-1/2 h-1/2 absolute stroke-white opacity-100 group-hover:opacity-20 duration-200 pulse group-hover:animate-none">
+                            <svg v-if="tracking" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-1/2 h-1/2 absolute stroke-white opacity-100 md:group-hover:opacity-20 duration-200 pulse group-hover:animate-none">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                             </svg>
@@ -48,7 +48,6 @@ export default {
     },
     methods:{
         async toggle(){
-            document.activeElement.blur();
             await this.$root.toggleTracking();
             this.tracking = this.$root.checkIfTracking();
         },

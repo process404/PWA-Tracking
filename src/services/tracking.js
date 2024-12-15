@@ -25,7 +25,7 @@ export function startTracking() {
         addLocation({ ...position, timestamp }, isMoving).then(() => {
             console.log('Location saved:', position, 'Moving:', isMoving, 'Timestamp:', timestamp);
         }).catch((error) => {
-            errorFn(error);
+            console.error('Error saving location:', error);
         });
 
         lastPosition = position;
@@ -34,11 +34,12 @@ export function startTracking() {
         console.log('Longitude:', position.coords.longitude);
         console.log('Timestamp:', timestamp);
     }, (error) => {
-        errorFn(error);
+        console.error('Error getting position:', error);
+        alert(`Error getting position: ${error.message}`);
     }, {
         enableHighAccuracy: true,
         maximumAge: 0,
-        timeout: 5000
+        timeout: 10000
     });
 }
 
