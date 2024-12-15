@@ -2,7 +2,7 @@ const dbName = 'TrackingDB'
 const storeName = 'coords'
 let db;
 
-export function openDB() {
+export async function openDB() {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(dbName, 1);
   
@@ -24,7 +24,7 @@ export function openDB() {
     });
   }
 
-export function addLocation(position, isMoving) {
+export async function addLocation(position, isMoving) {
     return new Promise((resolve, reject) => {
       const transaction = db.transaction([storeName], 'readwrite');
       const store = transaction.objectStore(storeName);
@@ -40,7 +40,7 @@ export function addLocation(position, isMoving) {
     });
 }
 
-export function getAllLocations() {
+export async function getAllLocations() {
     if (!db) {
         return Promise.reject(new Error('Database is not initialized. Please call openDB first.'));
     }

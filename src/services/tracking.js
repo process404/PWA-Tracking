@@ -14,7 +14,7 @@ export function startTracking() {
     }
 
     console.log('Tracking location...');
-    navigator.geolocation.watchPosition((position) => {
+    navigator.geolocation.watchPosition(async (position) => {
         const isMoving = lastPosition
             ? position.coords.latitude !== lastPosition.coords.latitude ||
               position.coords.longitude !== lastPosition.coords.longitude
@@ -22,11 +22,12 @@ export function startTracking() {
 
         const timestamp = new Date().toISOString();
 
-        addLocation({ ...position, timestamp }, isMoving).then(() => {
+        try {
+            await addLocation({ ...position, timestamp }, isMoving);
             console.log('Location saved:', position, 'Moving:', isMoving, 'Timestamp:', timestamp);
-        }).catch((error) => {
+        } catch (error) {
             console.error('Error saving location:', error);
-        });
+        }
 
         lastPosition = position;
 
@@ -39,7 +40,7 @@ export function startTracking() {
     }, {
         enableHighAccuracy: true,
         maximumAge: 0,
-        timeout: 10000
+        timeout: 60000,
     });
 }
 
