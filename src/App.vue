@@ -30,11 +30,11 @@
           stopTracking();
         }
       },
-      getTrackCount(){
-        return getCount();
+      async getTrackCount(){
+        return await getCount();
       },
-      checkIfTracking(){
-        return checkIfTracking();
+      async checkIfTracking(){
+        return await checkIfTracking();
       }
     },
     mounted(){

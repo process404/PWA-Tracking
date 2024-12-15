@@ -1,5 +1,7 @@
 import { openDB , addLocation } from './db.js'
 
+let lastPosition = null;
+
 let trackingInterval = null;
 
 export function checkIfTracking(){
@@ -7,31 +9,37 @@ export function checkIfTracking(){
 }
 
 export function startTracking() {
-    trackingInterval = setInterval(() => {
-        console.log('Tracking location...');
-        navigator.geolocation.getCurrentPosition((position) => {
-            const isMoving = lastPosition
+    if (trackingInterval) {
+        return;
+    }
+
+    console.log('Tracking location...');
+    navigator.geolocation.watchPosition((position) => {
+        const isMoving = lastPosition
             ? position.coords.latitude !== lastPosition.coords.latitude ||
               position.coords.longitude !== lastPosition.coords.longitude
             : false;
 
-            const timestamp = new Date().toISOString();
+        const timestamp = new Date().toISOString();
 
-            addLocation({ ...position, timestamp }, isMoving).then(() => {
-                console.log('Location saved:', position, 'Moving:', isMoving, 'Timestamp:', timestamp);
-            }).catch((error) => {
-                errorFn(error)
-            });
-
-            lastPosition = position;
-            
-            console.log('Latitude:', position.coords.latitude);
-            console.log('Longitude:', position.coords.longitude);
-            console.log('Timestamp:', timestamp);
-        }, (error) => {
-            errorFn(error)
+        addLocation({ ...position, timestamp }, isMoving).then(() => {
+            console.log('Location saved:', position, 'Moving:', isMoving, 'Timestamp:', timestamp);
+        }).catch((error) => {
+            errorFn(error);
         });
-    }, 5000);
+
+        lastPosition = position;
+
+        console.log('Latitude:', position.coords.latitude);
+        console.log('Longitude:', position.coords.longitude);
+        console.log('Timestamp:', timestamp);
+    }, (error) => {
+        errorFn(error);
+    }, {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 5000
+    });
 }
 
 function errorFn(error){

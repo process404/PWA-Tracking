@@ -48,6 +48,7 @@ export default {
     },
     methods:{
         async toggle(){
+            document.activeElement.blur();
             await this.$root.toggleTracking();
             this.tracking = this.$root.checkIfTracking();
         },
@@ -58,9 +59,9 @@ export default {
     mounted() {
         this.tracking = this.$root.checkIfTracking();
         this.updateTrackCount();
-        this.interval = setInterval(() => {
-            this.tracking = this.$root.checkIfTracking();
-            this.updateTrackCount();
+        this.interval = setInterval(async () => {
+            this.tracking = await this.$root.checkIfTracking();
+            await this.updateTrackCount();
         }, 10000);
     },
     beforeDestroy() {
