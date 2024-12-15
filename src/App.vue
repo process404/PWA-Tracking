@@ -31,6 +31,15 @@
       toggleTracking(){
         this.tracking = !this.tracking;
         if(this.tracking){
+          if (localStorage.getItem('trackingInterval')) {
+            this.trackTimeout = localStorage.getItem('trackingInterval');
+          }
+          if (localStorage.getItem('acc_var')) {
+            this.accuracy = localStorage.getItem('acc_var') === 'true';
+          }
+          if (localStorage.getItem('time_out_var')) {
+            this.movementMode = localStorage.getItem('time_out_var') === 'true';
+          }
           startTracking(this.trackTimeout,this.accuracy, this.movementMode);
         }else{
           stopTracking();

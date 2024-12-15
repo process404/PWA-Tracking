@@ -20,6 +20,7 @@ export default {
         window.scrollTo(0, 0);
         await openDB();
         this.locations = await getAllLocations();
+        console.log(this.locations);
 
         initialMap.value = L.map('map').setView([55.3781, -3.4360], 6);
         
@@ -28,9 +29,9 @@ export default {
         }).addTo(initialMap.value);
 
         this.locations.forEach(location => {
-            if (location.latitude && location.longitude) {
-                L.marker([location.latitude, location.longitude]).addTo(initialMap.value)
-                .bindPopup(`<b>${location.name}</b><br>${location.description}<br><i>${new Date(location.timestamp).toLocaleString()}</i>`);
+            if (location.coords && location.coords.latitude && location.coords.longitude) {
+            L.marker([location.coords.latitude, location.coords.longitude]).addTo(initialMap.value)
+            .bindPopup(`<b>${location.name || 'Location'}</b><br>${location.description || ''}<br><i>${new Date(location.timestamp).toLocaleString()}</i>`);
             }
         });
     }

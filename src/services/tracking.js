@@ -1,4 +1,4 @@
-import { addLocation } from './db';
+import { addLocation, openDB } from './db.js';
 
 let trackingInterval = null;
 let lastPosition = null;
@@ -11,7 +11,7 @@ export function checkIfTracking() {
     return trackingInterval !== null;
 }
 
-export function startTracking(time_out, acc, movement_mode) {
+export async function startTracking(time_out, acc, movement_mode) {
     if (trackingInterval) {
         return;
     }
@@ -20,12 +20,16 @@ export function startTracking(time_out, acc, movement_mode) {
     acc_var = acc;
     movement_mode_var = movement_mode;
 
+    await openDB();
+    
     console.log('Tracking location...');
     getPosition(true, time_out_var, movement_mode_var); 
 
     trackingInterval = setInterval(() => {
         getPosition(acc_var, time_out_var, movement_mode_var);
     }, time_out_var); 
+
+
 }
 
 function getPosition(enableHighAccuracy, timeout, movement_mode) {
@@ -33,7 +37,7 @@ function getPosition(enableHighAccuracy, timeout, movement_mode) {
         const isMoving = lastPosition
             ? position.coords.latitude !== lastPosition.coords.latitude ||
               position.coords.longitude !== lastPosition.coords.longitude
-            : false;
+            : true;
 
         if (movement_mode && !isMoving) {
             console.log('No significant movement detected, not saving location.');
@@ -43,7 +47,14 @@ function getPosition(enableHighAccuracy, timeout, movement_mode) {
         const timestamp = new Date().toISOString();
 
         try {
-            await addLocation({ ...position, timestamp }, isMoving);
+            await addLocation({
+                timestamp: timestamp,
+                isMoving: isMoving,
+                coords: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                }
+            });
             console.log('Location saved:', position, 'Moving:', isMoving, 'Timestamp:', timestamp);
         } catch (error) {
             console.error('Error saving location:', error);
