@@ -111,7 +111,11 @@ export async function requestNotificationPermission() {
 
 export function showNotification(title, options) {
     if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification(title, options);
+        if (navigator.serviceWorker && navigator.serviceWorker.ready) {
+            navigator.serviceWorker.ready.then(function(registration) {
+                registration.showNotification(title, options);
+            });
+        }
     }
 }
 
