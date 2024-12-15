@@ -1,6 +1,6 @@
 <template>
     <main class="w-full h-full lg:h-screen bg-teal-900 bg-opacity-50 flex items-center justify-center lg:pt-4 lb:pb-4 pt-16 pb-16">
-        <div class="w-full h-full max-w-[1400px] flex items-center justify-center lg:gap-24 md:gap-12 xl:gap-48 pl-6 pr-6 lg:flex-row flex-col">
+        <div class="w-full h-full max-w-[1400px] flex items-center justify-center lg:gap-24 md:gap-12 xl:gap-48 md:pl-12 md:pr-12 pr-6 pl-6 lg:flex-row flex-col">
             <div class="xl:max-w-[75ch] max-w-[60ch] flex flex-col gap-8">
                 <h1 class="text-white text-6xl mb-4 font-semibold text-center">Live Tracking</h1>
                 <p class="text-white text-center">Live Tracking is a way to track your journeys automatically based on your device location. By using the location and several factors such as speed, distance and time, the journey start / end points aswell as the mode of transport use can be calculated. You can request your statistics and see your data on the <router-link to="/dashboard" class="line teal">dashboard page</router-link><br><br>This not not only allows you to break free of manually 'noting' down your journeys, but also allows you to see how sustainable your travel is and how much you are active per day from a fitness perspective.<br><br>As with any location services, be mindful as to the extra battery usage that using this tracking tool may cause.</p>
@@ -12,9 +12,9 @@
                 <div class="border-[1px] border-white border-opacity-50 p-4 rounded-sm w-full mt-8 flex flex-col">
                     <h3 v-if="!tracking" class="text-white w-full text-center italic m-0 font-semibold text-xl">Click the button to enable tracking</h3>
                     <h3 v-else class="text-white w-full text-center italic m-0 font-semibold text-xl">Click the button to stop tracking</h3>
-                    <h4 v-if="!tracking" class="w-full text-center text-white text-opacity-50 italic">Currently not enabled</h4>
-                    <h4 v-else class="w-full text-center text-white mt-0 text-opacity-50 italic">Tracking enabled, location logs: {{trackCount}} </h4>
-                    <button class="w-full h-64 group border-[1px] border-white border-opacity-50 bg-black bg-opacity-20 rounded-md mt-4 flex items-center" @click="toggle()">  
+                    <h4 v-if="!tracking" class="w-full text-center text-white text-opacity-50 italic hidden sm:inline-block">Currently not enabled</h4>
+                    <h4 v-else class="w-full text-center text-white mt-0 text-opacity-50 italic hidden sm:inline-block">Tracking enabled, location logs: {{trackCount}} </h4>
+                    <button class="w-full h-64 group border-[1px] border-white border-opacity-50 bg-black bg-opacity-20 rounded-md mt-4 flex items-center" @click="toggle()" :aria-label="tracking ? 'Stop tracking' : 'Start tracking'">  
                         <div class="w-full h-full relative flex items-center justify-center">
                             <svg v-if="!tracking" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-full h-full absolute stroke-white opacity-70 group-hover:opacity-5 duration-200">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -30,9 +30,10 @@
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                             </svg>
-                            
                         </div>
                     </button>
+                    <h4 v-if="!tracking" class="w-full text-center mt-3 text-white text-opacity-50 italic sm:hidden inline-block">Currently not enabled</h4>
+                    <h4 v-else class="w-full text-center text-white mt-3 text-opacity-50 italic sm:hidden inline-block">Tracking enabled, location logs: {{trackCount}} </h4>
                 </div>
             </div>
         </div>
@@ -56,7 +57,7 @@ export default {
         }
     },
     mounted() {
-        this.tracking = this.$root.checkIfTracking();
+        this.tracking = false;
         this.updateTrackCount();
         this.interval = setInterval(async () => {
             this.tracking = await this.$root.checkIfTracking();
