@@ -32,6 +32,9 @@ export default {
             locations: null,
         }
     },
+    mounted(){
+        window.scrollTo(0, 0);
+    },
     async mounted(){
         await openDB();
         this.locations = await getAllLocations();

@@ -57,6 +57,7 @@ export default {
         }
     },
     mounted() {
+        window.scrollTo(0, 0);
         this.tracking = false;
         this.updateTrackCount();
         this.interval = setInterval(async () => {

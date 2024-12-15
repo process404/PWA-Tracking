@@ -1,10 +1,9 @@
-import { openDB , addLocation } from './db.js'
-
-let lastPosition = null;
+import { addLocation } from './db';
 
 let trackingInterval = null;
+let lastPosition = null;
 
-export function checkIfTracking(){
+export function checkIfTracking() {
     return trackingInterval !== null;
 }
 
@@ -14,6 +13,10 @@ export function startTracking() {
     }
 
     console.log('Tracking location...');
+    getPosition(true, 2000); // First attempt with high accuracy and short timeout
+}
+
+function getPosition(enableHighAccuracy, timeout) {
     navigator.geolocation.watchPosition(async (position) => {
         const isMoving = lastPosition
             ? position.coords.latitude !== lastPosition.coords.latitude ||
@@ -36,41 +39,29 @@ export function startTracking() {
         console.log('Timestamp:', timestamp);
     }, (error) => {
         console.error('Error getting position:', error);
-        alert(`Error getting position: ${error.message}`);
+        if (enableHighAccuracy) {
+            console.log('Retrying with high accuracy disabled...');
+            getPosition(false, 60000); // Retry with high accuracy disabled and longer timeout
+        } else {
+            alert(`Error getting position: ${error.message}`);
+            stopTracking(); // Stop tracking on error
+        }
     }, {
-        enableHighAccuracy: true,
-        maximumAge: 0,
-        timeout: 60000,
+        enableHighAccuracy: enableHighAccuracy,
+        maximumAge: 60000,
+        timeout: timeout
     });
 }
 
-function errorFn(error){
-    console.error('Error getting location:', error);
-    alert('Error getting location, (Error: ' + error.message + ".) Location tracking will be stopped.");
-    stopTracking();
-}
-
 export function stopTracking() {
-    if(trackingInterval) {
+    if (trackingInterval) {
         clearInterval(trackingInterval);
         trackingInterval = null;
     }
 }
 
-export function getCount(){
-    return new Promise((resolve, reject) => {
-        openDB().then((db) => {
-            const transaction = db.transaction(['coords'], 'readonly');
-            const store = transaction.objectStore('coords');
-            const request = store.count();
-            request.onsuccess = () => {
-                resolve(request.result);
-            };
-            request.onerror = (event) => {
-                reject(event.target.error);
-            };
-        }).catch((error) => {
-            reject(error);
-        });
-    });
+function errorFn(error) {
+    console.error('Error getting location:', error);
+    alert('Error getting location, (Error: ' + error.message + ".) Location tracking will be stopped.");
+    stopTracking();
 }
