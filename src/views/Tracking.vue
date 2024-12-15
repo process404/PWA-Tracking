@@ -1,5 +1,5 @@
 <template>
-    <main class="w-full h-full bg-teal-900 bg-opacity-50 flex items-center justify-center lg:pt-4 lb:pb-4 pt-16 pb-16">
+    <main class="w-full h-full lg:h-screen bg-teal-900 bg-opacity-50 flex items-center justify-center lg:pt-4 lb:pb-4 pt-16 pb-16">
         <div class="w-full h-full max-w-[1400px] flex items-center justify-center lg:gap-24 md:gap-12 xl:gap-48 pl-6 pr-6 lg:flex-row flex-col">
             <div class="xl:max-w-[75ch] max-w-[60ch] flex flex-col gap-8">
                 <h1 class="text-white text-6xl mb-4 font-semibold text-center">Live Tracking</h1>

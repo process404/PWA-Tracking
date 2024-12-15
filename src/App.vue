@@ -1,8 +1,8 @@
 
 <template>
   <Nav :ver="ver"/>
-  <router-view class="h-auto min-h-full lg:h-full lg:min-h-0"></router-view>
-  <Footer></Footer>
+  <router-view></router-view>
+  <Footer class="mt-auto"></Footer>
 </template>
 
 <script>
