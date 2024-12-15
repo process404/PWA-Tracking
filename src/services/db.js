@@ -74,3 +74,19 @@ export async function clearLocations(){
       };
     });
 }
+
+export async function getCount(){
+  return new Promise((resolve, reject) => {
+      const transaction = db.transaction([storeName], 'readonly');
+      const store = transaction.objectStore(storeName);
+      const request = store.count();
+  
+      request.onsuccess = (event) => {
+        resolve(event.target.result);
+      };
+  
+      request.onerror = (event) => {
+        reject(event.target.error);
+      };
+    });
+}

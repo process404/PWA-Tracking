@@ -40,7 +40,8 @@
     </main>
 </template>
 <script>
-import { checkIfTracking, getCount } from '../services/tracking.js';
+import { checkIfTracking } from '../services/tracking.js';
+import { getCount } from '../services/db.js';
 export default {
     data(){
         return{
