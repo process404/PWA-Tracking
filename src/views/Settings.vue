@@ -25,6 +25,33 @@
                         <div class="border-neutral-700 border-[1px] m-4">
                             <article class="flex items-center gap-6 pt-4 pb-4 pl-3 pr-3 md:flex-row flex-col">
                                 <div class="md:w-3/4 w-full">
+                                    <h3 class="dark:text-neutral-300 mb-2">Control frequency and accuracy of tracking</h3>
+                                    <p class="dark:text-neutral-400 text-sm italic">Control frequency and accuracy of tracking requests to suit battery usage requirements.</p>
+                                </div>
+                                <div class="w-full flex items-center justify-center flex-col gap-2  border-[1px] p-2 border-neutral-700 rounded-sm">
+                                    <div class="w-full">
+                                        <label for="trackingFrequency" class="dark:text-neutral-300 w-full">Tracking Frequency</label>
+                                        <input type="range" id="trackingFrequency" min="10" max="3600" class="w-full mt-2" v-model="trackingFrequency" @input="updateTrackingFrequency">
+                                        <div class="flex items-center">
+                                            <p class="dark:text-neutral-400 text-sm italic w-full">{{ trackingFrequency }} seconds ( {{ trackingFrequencyInMinutes() }} minutes )</p>
+                                            <input type="number" min="10" max="3600" class="input reduced" v-model="trackingFrequency" @input="updateTrackingFrequency">
+                                        </div>
+                                    </div>
+                                    <hr class="h-[1px] bg-neutral-700 border-none w-full">
+                                    <div class="w-full flex justify-between gap-4">
+                                        <label for="trackingAccuracy" class="dark:text-neutral-300">Tracking Accuracy</label>
+                                        <input type="checkbox" class="switch blue" v-model="trackingAccuracy" @change="updateTrackingAccuracy">
+                                    </div>
+                                    <hr class="h-[1px] bg-neutral-700 border-none w-full">
+                                    <div class="w-full flex justify-between gap-4">
+                                        <label for="trackingMoving" class="dark:text-neutral-300 w-2/3">Do not add to DB during long periods of inactivity</label>
+                                        <input type="checkbox" class="switch blue" v-model="trackingMoving" @change="updateTrackingMoving">
+                                    </div>
+                                
+                                </div>
+                            </article>
+                            <article class="flex items-center gap-6 pt-4 pb-4 pl-3 pr-3 md:flex-row flex-col">
+                                <div class="md:w-3/4 w-full">
                                     <h3 class="dark:text-neutral-300 mb-2">Print database data to console</h3>
                                     <p class="dark:text-neutral-400 text-sm italic">Print data from database to console to check or store elsewhere</p>
                                 </div>
@@ -69,6 +96,9 @@ export default {
             darkMode: false,
             advancedDropdown: false,
             understood: false,
+            trackingFrequency: 0,
+            trackingAccuracy: true,
+            trackingMoving: false
         }
     },
     methods:{
@@ -105,7 +135,24 @@ export default {
                 this.understood = false;
                 window.location.reload();
             }
+        },
+        trackingFrequencyInMinutes() {
+            return (this.trackingFrequency / 60).toFixed(2);
+        },
+        updateTrackingFrequency(){
+            localStorage.setItem('trackingInterval', this.trackingFrequency);
+        },
+        updateTrackingAccuracy(){
+            localStorage.setItem('acc_var', this.trackingAccuracy);
+        },
+        updateTrackingMoving(){
+            localStorage.setItem('time_out_var', this.trackingMoving);
         }
+    },
+    mounted(){
+        this.trackingFrequency = this.$root.trackTimeout ?? localStorage.getItem('trackingInterval') ?? 120;
+        this.trackingAccuracy = this.$root.accuracy ?? (localStorage.getItem('acc_var') === 'true');
+        this.trackingMoving = this.$root.movementMode ?? (localStorage.getItem('time_out_var') === 'true');
     }
 }
 </script>

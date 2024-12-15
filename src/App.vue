@@ -20,14 +20,18 @@
       return {
         ver: 'main',
         tracking: false,
-        darkMode: false 
+        darkMode: false,
+        trackTimeout: 120000,
+        accuracy: true,
+        stationeryMode: false,
+        movementMode: false,
       };
     },
     methods:{
       toggleTracking(){
         this.tracking = !this.tracking;
         if(this.tracking){
-          startTracking();
+          startTracking(this.trackTimeout,this.accuracy, this.movementMode);
         }else{
           stopTracking();
         }
@@ -43,6 +47,14 @@
       );
       this.darkMode = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
       this.tracking = await checkIfTracking();
+
+      this.trackTimeout = localStorage.getItem('trackingInterval');
+      this.movementMode = localStorage.getItem('time_out_var');
+      this.accuracy = localStorage.getItem('acc_var');
+
+      console.log(this.trackTimeout);
+      console.log(this.movementMode);
+      console.log(this.accuracy);
 
     }
   }
