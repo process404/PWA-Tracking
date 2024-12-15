@@ -21,8 +21,10 @@ export async function startTracking(time_out, acc, movement_mode) {
     movement_mode_var = movement_mode;
 
     await openDB();
+    await requestNotificationPermission();
     
     console.log('Tracking location...');
+    showNotification('Tracking Started', { body: 'Location tracking is now active.' });
     getPosition(true, time_out_var, movement_mode_var); 
 
     trackingInterval = setInterval(() => {
@@ -71,8 +73,7 @@ function getPosition(enableHighAccuracy, timeout, movement_mode) {
             console.log('Retrying with high accuracy disabled...');
             getPosition(false, timeout * 3, movement_mode); 
         } else {
-            alert(`Error getting position: ${error.message}`);
-            stopTracking(); 
+            errorFn(error);
         }
     }, {
         enableHighAccuracy: enableHighAccuracy,
@@ -85,6 +86,7 @@ export function stopTracking() {
     if (trackingInterval) {
         clearInterval(trackingInterval);
         trackingInterval = null;
+        showNotification('Tracking Stopped', { body: 'Location tracking has been stopped.' });
     }
 }
 
@@ -93,3 +95,23 @@ function errorFn(error) {
     alert('Error getting location, (Error: ' + error.message + ".) Location tracking will be stopped.");
     stopTracking();
 }
+
+export async function requestNotificationPermission() {
+    if ('Notification' in window) {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+            console.log('Notification permission granted.');
+        } else {
+            console.log('Notification permission denied.');
+        }
+    } else {
+        console.log('Notifications are not supported by this browser.');
+    }
+}
+
+export function showNotification(title, options) {
+    if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification(title, options);
+    }
+}
+
