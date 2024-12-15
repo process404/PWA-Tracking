@@ -62,10 +62,10 @@ export default {
         window.scrollTo(0, 0);
         this.tracking = false;
         this.updateTrackCount();
-        this.interval = setInterval(async () => {
-            this.tracking = await checkIfTracking();
+        this.interval = setInterval(() => {
+            this.tracking = checkIfTracking();
             console.log(this.tracking);
-            await this.updateTrackCount();
+            this.updateTrackCount();
         }, 60000);
     },
     beforeDestroy() {

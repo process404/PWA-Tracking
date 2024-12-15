@@ -13,11 +13,11 @@ export function startTracking() {
     }
 
     console.log('Tracking location...');
-    getPosition(true, 2000); // First attempt with high accuracy and short timeout
+    getPosition(true, 60000); 
 
     trackingInterval = setInterval(() => {
-        getPosition(true, 2000);
-    }, 10000); // Set the interval to 10 seconds (or any desired interval)
+        getPosition(true, 60000);
+    }, 10000); 
 
     localStorage.setItem('trackingInterval', trackingInterval);
 }
@@ -47,14 +47,14 @@ function getPosition(enableHighAccuracy, timeout) {
         console.error('Error getting position:', error);
         if (enableHighAccuracy) {
             console.log('Retrying with high accuracy disabled...');
-            getPosition(false, 60000); // Retry with high accuracy disabled and longer timeout
+            getPosition(false, 240000); 
         } else {
             alert(`Error getting position: ${error.message}`);
-            stopTracking(); // Stop tracking on error
+            stopTracking(); 
         }
     }, {
         enableHighAccuracy: enableHighAccuracy,
-        maximumAge: 0,
+        maximumAge: 60000,
         timeout: timeout
     });
 }
