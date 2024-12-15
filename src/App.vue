@@ -18,7 +18,8 @@
     data() {
       return {
         ver: 'main',
-        tracking: false
+        tracking: false,
+        darkMode: false 
       };
     },
     methods:{
@@ -38,7 +39,13 @@
       }
     },
     mounted(){
+      document.documentElement.classList.toggle(
+      'dark',
+        localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      );
+      this.darkMode = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
       this.tracking = this.checkIfTracking();
+
     }
   }
   

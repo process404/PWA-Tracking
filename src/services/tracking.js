@@ -65,3 +65,28 @@ function errorFn(error) {
     alert('Error getting location, (Error: ' + error.message + ".) Location tracking will be stopped.");
     stopTracking();
 }
+
+export function getCount() {se
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('locations', 1);
+
+        request.onsuccess = (event) => {
+            const db = event.target.result;
+            const transaction = db.transaction('locations', 'readonly');
+            const store = transaction.objectStore('locations');
+            const countRequest = store.count();
+
+            countRequest.onsuccess = () => {
+                resolve(countRequest.result);
+            };
+
+            countRequest.onerror = () => {
+                reject(countRequest.error);
+            };
+        };
+
+        request.onerror = () => {
+            reject(request.error);
+        };
+    });
+}

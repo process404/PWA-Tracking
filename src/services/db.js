@@ -58,3 +58,19 @@ export async function getAllLocations() {
       };
     });
   }
+
+export async function clearLocations(){
+  return new Promise((resolve, reject) => {
+      const transaction = db.transaction([storeName], 'readwrite');
+      const store = transaction.objectStore(storeName);
+      const request = store.clear();
+  
+      request.onsuccess = () => {
+        resolve();
+      };
+  
+      request.onerror = (event) => {
+        reject(event.target.error);
+      };
+    });
+}
