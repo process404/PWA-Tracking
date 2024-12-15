@@ -12,4 +12,5 @@ openDB().then(() => {
     console.error('Error opening database:', error);
   });
 
+
 createApp(App).use(router).mount('#app')

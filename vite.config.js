@@ -23,7 +23,7 @@ export default defineConfig({
           purpose: 'any maskable',
         }
       ]
-    }
+    },
   })],
   server:{
     port: 8080

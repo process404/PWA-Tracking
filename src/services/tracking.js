@@ -31,6 +31,17 @@ export async function startTracking(time_out, acc, movement_mode) {
         getPosition(acc_var, time_out_var, movement_mode_var);
     }, time_out_var); 
 
+    // Register background sync
+    if ('serviceWorker' in navigator && 'SyncManager' in window) {
+        navigator.serviceWorker.ready.then((registration) => {
+            return registration.sync.register('sync-locations');
+        }).then(() => {
+            console.log('Background sync registered');
+        }).catch((error) => {
+            console.log('Background sync registration failed:', error);
+        });
+    }
+
 
 }
 
